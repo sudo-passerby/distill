@@ -1,5 +1,5 @@
 """Fine-tune a tiny model (Qwen3-0.6B + classification head) on Banking77, then score it on the test set.
-Run: ~/roommate-match/.venv-decider/bin/python train.py  (that venv has ROCm torch for gfx1151)"""
+Run: python train.py  (needs torch with GPU support and transformers 5.x)"""
 import csv, json, random, time
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer

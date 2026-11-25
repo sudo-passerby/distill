@@ -15,7 +15,7 @@ tiny = json.load(open("results/tiny_preds.json"))
 full = sum(p == t[1] for p, t in zip(tiny, test)) / len(test)
 assert abs(full - json.load(open("results/tiny.json"))["test_accuracy"]) < 1e-9
 print(f"{'tiny, full test (3,080)':28} {full:6.1%}  matches")
-check("tiny (Qwen3-0.6B trained)", [tiny[i] for i in idx], sum(tiny[i] == g for i, g in zip(idx, gold)) / 500)
+print(f"{'tiny on the 500 sample':28} {sum(tiny[i] == g for i, g in zip(idx, gold)) / 500:6.1%}  (charts.py shows this)")
 
 d = json.load(open("results/decider_preds.json"))
 assert [x["text"] for x in d] == [test[i][0] for i in idx], "decider answers are for different messages"

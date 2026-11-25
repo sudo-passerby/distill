@@ -1,5 +1,5 @@
 """Score pplx-decider-flash-v1.3 (not trained on Banking77) with one 77-option `choice` question per message,
-on the same 500 test messages as baseline.py. Run: ~/roommate-match/.venv-decider/bin/python -u decider_baseline.py"""
+on the same 500 test messages as baseline.py. Run: python -u decider_baseline.py"""
 import csv, json, random, sys, time
 from pathlib import Path
 from huggingface_hub import snapshot_download

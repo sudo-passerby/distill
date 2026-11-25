@@ -1,5 +1,5 @@
 {
-  "device": "cpu (16 threads, Ryzen AI MAX+ 392)",
+  "device": "cpu (8 threads, Ryzen AI MAX+ 392)",
   "dtype": "float32",
-  "latency_ms_single": 829.6
+  "latency_ms_single": 599.5
 }

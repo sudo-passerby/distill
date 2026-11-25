@@ -58,6 +58,8 @@ python3 charts.py > post-with-charts.md
 - The trained model saw 10k labelled examples. The other models saw none, only the category names. That's the trade being measured.
 - API latency includes the network round-trip from Bangalore, and the API runs went in parallel.
 - `results/first_run/` holds the first API run's scores. The APIs were run again so every answer could be saved; the post uses the second run.
+- The OpenAI Decisions API returned no choice for 3 of the 500 messages; those count as wrong.
+- CPU latency (`results/tiny_cpu.json`) is 8 threads, float32, plain PyTorch, no CPU optimisation.
 - A Gemini 3.8 Flash run was stopped at 50 messages for being slow (~8 s a call); its partial log is in `results/`.
 - ROCm on gfx1151: MIOpen fails on the decider's long prompts; `torch.backends.cudnn.enabled = False` fixes it (set in `decider_baseline.py`).
 - The trained weights (1.2 GB) aren't in the repo. `train.py` recreates them.

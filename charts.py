@@ -1,4 +1,5 @@
-"""Builds the blog post from post.md: every <!-- chart:NAME --> marker is replaced with a chart drawn from results/*.json.
+"""Builds the blog post from post.md: every <!-- chart:NAME --> marker becomes a chart and every <!-- val:NAME -->
+a number, both drawn from results/*.json, so nothing in the post is typed by hand.
 Run: python3 charts.py > ~/code/portfolio/content/blog/tiny-model-8-minutes.md"""
 import json, math, re
 from pathlib import Path
@@ -49,8 +50,9 @@ def scatter_svg(W, H, short):
     g.append(f'<text x="{(L + W - Rm) / 2:.0f}" y="{H - 6}" text-anchor="middle" class="axis">{"time per message →" if short else "time per message (log scale) → slower"}</text>')
     # label side per model so names never collide
     side = {"Ours: Qwen3-0.6B, trained": "r", "pplx-decider 4B": "l", "GPT-6 Luna": "l", "Gemini 3.5 Flash-Lite": "l",
-            "OpenAI Decisions API": "l", "gemma4 4B": "r", "qwen3.5 4B": "r"}
+            "OpenAI Decisions API": "l", "gemma4 4B": "r", "qwen3.5 4B": "l"}
     for r in rows:
+        assert 10 <= r["ms"] <= 3000 and 66 <= r["acc"] <= 96, f'{r["name"]} falls outside the chart axes; widen them'
         cx, cy = x(r["ms"]), y(r["acc"])
         cls = "dot ours" if r["ours"] else ("dot api" if r["where"] == "api" else "dot")
         s = side[r["name"]]
@@ -90,19 +92,27 @@ def confidence():
     hi = [p for p in preds if p["confidence"] >= 0.5]; lo = [p for p in preds if p["confidence"] < 0.5]
     acc = lambda ps: sum(p["choice"] == p["gold"] for p in ps) / len(ps) * 100
     return bars("pplx-decider: right how often, by its own confidence",
-                [(f"confident ({len(hi)} msgs)", acc(hi), True), (f"unsure ({len(lo)} msgs)", acc(lo), "plain")], lambda v: f"{v:.0f}%")
+                [(f"confident ({len(hi)} msgs)", acc(hi), "plain"), (f"unsure ({len(lo)} msgs)", acc(lo), "plain")], lambda v: f"{v:.0f}%")
 
 def flow():
     luna = next(r for r in rows if r["name"] == "GPT-6 Luna")
     return ('<figure class="viz flow">'
             '<div class="flow-row"><span class="flow-tag">today</span><span class="flow-box">your app</span><span class="flow-arrow">every message →</span>'
             f'<span class="flow-box api">GPT / Gemini API</span><span class="flow-cost">{luna["ms"] / 1000:.1f} s · pay per call</span></div>'
-            '<div class="flow-row"><span class="flow-tag">once</span><span class="flow-box">your past answers</span><span class="flow-arrow">8 min of training →</span>'
+            f'<div class="flow-row"><span class="flow-tag">once</span><span class="flow-box">your past answers</span><span class="flow-arrow">{VALS["train_min"]} min of training →</span>'
             '<span class="flow-box ours">your own small model</span><span class="flow-cost"></span></div>'
             '<div class="flow-row"><span class="flow-tag">after</span><span class="flow-box">your app</span><span class="flow-arrow">every message →</span>'
             f'<span class="flow-box ours">your own small model</span><span class="flow-cost">{rows[0]["ms"]:.0f} ms · $0 per call</span></div>'
             '</figure>')
 
+VALS = {
+    "tiny_acc": f'{rows[0]["acc"]:.1f}%', "tiny_full": f'{tiny["test_accuracy"] * 100:.1f}%',
+    "tiny_ms": f'{tiny["latency_ms_single"]:.0f} ms', "train_min": f'{round(tiny["train_seconds"] / 60)}',
+    "cpu_ms": f'{round(load("tiny_cpu.json")["latency_ms_single"], -1):.0f} ms',
+    "api_cost": f'${sum(load(f)["cost_usd"] for _, f, w in MODELS if w == "api"):.2f}',
+}
+
 CHARTS = {"scatter": scatter, "time500": time500, "bill": bill, "confidence": confidence, "flow": flow}
 post = Path("post.md").read_text()
+post = re.sub(r"<!-- val:(\w+) -->", lambda m: VALS[m.group(1)], post)
 print(re.sub(r"<!-- chart:(\w+) -->", lambda m: CHARTS[m.group(1)](), post), end="")
