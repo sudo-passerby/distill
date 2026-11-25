@@ -1,0 +1,44 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/310 [00:00<?, ?it/s]Loading weights: 100%|██████████| 310/310 [00:00<00:00, 14190.36it/s]
+[transformers] [1mQwen3ForSequenceClassification LOAD REPORT[0m from: Qwen/Qwen3-0.6B
+Key            | Status     | 
+---------------+------------+-
+lm_head.weight | UNEXPECTED | 
+score.weight   | MISSING    | 
+
+Notes:
+- UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+<venv>/lib/python3.13/site-packages/transformers/integrations/sdpa_attention.py:158: UserWarning: Mem Efficient attention on Current AMD GPU is still experimental. Enable it with TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL=1. (Triggered internally at /__w/TheRock/TheRock/external-builds/pytorch/pytorch/aten/src/ATen/native/transformers/hip/sdp_utils.cpp:383.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+epoch 0 step 0 loss 6.823 (2s)
+epoch 0 step 50 loss 4.516 (26s)
+epoch 0 step 100 loss 1.198 (50s)
+epoch 0 step 150 loss 0.768 (75s)
+epoch 0 step 200 loss 0.378 (100s)
+epoch 0 step 250 loss 0.069 (125s)
+epoch 0 step 300 loss 0.371 (149s)
+epoch 1 step 0 loss 0.210 (156s)
+epoch 1 step 50 loss 0.039 (181s)
+epoch 1 step 100 loss 0.108 (207s)
+epoch 1 step 150 loss 0.109 (233s)
+epoch 1 step 200 loss 0.349 (258s)
+epoch 1 step 250 loss 0.103 (283s)
+epoch 1 step 300 loss 0.216 (307s)
+epoch 2 step 0 loss 0.010 (314s)
+epoch 2 step 50 loss 0.006 (340s)
+epoch 2 step 100 loss 0.011 (366s)
+epoch 2 step 150 loss 0.013 (390s)
+epoch 2 step 200 loss 0.004 (415s)
+epoch 2 step 250 loss 0.021 (440s)
+epoch 2 step 300 loss 0.025 (465s)
+<venv>/lib/python3.13/site-packages/transformers/integrations/sdpa_attention.py:158: UserWarning: Flash Efficient attention on Current AMD GPU is still experimental. Enable it with TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL=1. (Triggered internally at /__w/TheRock/TheRock/external-builds/pytorch/pytorch/aten/src/ATen/native/transformers/hip/sdp_utils.cpp:323.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+{
+  "model": "Qwen/Qwen3-0.6B",
+  "test_accuracy": 0.9285714285714286,
+  "test_n": 3080,
+  "train_seconds": 471,
+  "latency_ms_single": 24.0
+}
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.36it/s]Writing model shards: 100%|██████████| 1/1 [00:00<00:00,  3.36it/s]

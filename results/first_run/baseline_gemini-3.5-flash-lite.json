@@ -1,0 +1,10 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "accuracy": 0.778,
+  "n": 500,
+  "latency_ms_single": 939,
+  "input_tokens": 285696,
+  "output_tokens": 6878,
+  "cost_usd": 0.1029,
+  "cost_usd_per_500": 0.1029
+}

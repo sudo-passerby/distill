@@ -1,0 +1,20 @@
+50/500 acc 0.720
+100/500 acc 0.740
+150/500 acc 0.780
+200/500 acc 0.775
+250/500 acc 0.780
+300/500 acc 0.780
+350/500 acc 0.777
+400/500 acc 0.775
+450/500 acc 0.778
+500/500 acc 0.782
+{
+  "model": "gemini-3.5-flash-lite",
+  "accuracy": 0.782,
+  "n": 500,
+  "latency_ms_single": 852,
+  "input_tokens": 285696,
+  "output_tokens": 6785,
+  "cost_usd": 0.1027,
+  "cost_usd_per_500": 0.1027
+}

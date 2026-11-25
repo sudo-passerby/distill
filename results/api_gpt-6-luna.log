@@ -1,0 +1,20 @@
+50/500 acc 0.780
+100/500 acc 0.810
+150/500 acc 0.847
+200/500 acc 0.840
+250/500 acc 0.832
+300/500 acc 0.827
+350/500 acc 0.817
+400/500 acc 0.818
+450/500 acc 0.820
+500/500 acc 0.820
+{
+  "model": "gpt-6-luna",
+  "accuracy": 0.82,
+  "n": 500,
+  "latency_ms_single": 1363,
+  "input_tokens": 436477,
+  "output_tokens": 32980,
+  "cost_usd": 0.0601,
+  "cost_usd_per_500": 0.0601
+}

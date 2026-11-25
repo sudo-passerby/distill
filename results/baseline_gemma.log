@@ -1,0 +1,16 @@
+50/500 acc 0.620 (155 ms each)
+100/500 acc 0.700 (151 ms each)
+150/500 acc 0.727 (147 ms each)
+200/500 acc 0.735 (146 ms each)
+250/500 acc 0.728 (145 ms each)
+300/500 acc 0.720 (145 ms each)
+350/500 acc 0.714 (145 ms each)
+400/500 acc 0.720 (145 ms each)
+450/500 acc 0.722 (146 ms each)
+500/500 acc 0.720 (147 ms each)
+{
+  "model": "gemma4:e4b",
+  "accuracy": 0.72,
+  "n": 500,
+  "latency_ms_single": 147
+}

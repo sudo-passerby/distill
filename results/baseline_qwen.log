@@ -1,0 +1,16 @@
+50/500 acc 0.600 (417 ms each)
+100/500 acc 0.640 (430 ms each)
+150/500 acc 0.673 (432 ms each)
+200/500 acc 0.695 (434 ms each)
+250/500 acc 0.696 (438 ms each)
+300/500 acc 0.690 (446 ms each)
+350/500 acc 0.694 (452 ms each)
+400/500 acc 0.695 (456 ms each)
+450/500 acc 0.700 (460 ms each)
+500/500 acc 0.692 (466 ms each)
+{
+  "model": "qwen3.5:4b",
+  "accuracy": 0.692,
+  "n": 500,
+  "latency_ms_single": 466
+}

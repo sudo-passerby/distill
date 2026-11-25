@@ -1,0 +1,7 @@
+{
+  "model": "Qwen/Qwen3-0.6B",
+  "test_accuracy": 0.9285714285714286,
+  "test_n": 3080,
+  "train_seconds": 471,
+  "latency_ms_single": 24.0
+}

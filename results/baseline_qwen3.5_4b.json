@@ -1,0 +1,6 @@
+{
+  "model": "qwen3.5:4b",
+  "accuracy": 0.692,
+  "n": 500,
+  "latency_ms_single": 483
+}

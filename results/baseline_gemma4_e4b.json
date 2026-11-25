@@ -1,0 +1,6 @@
+{
+  "model": "gemma4:e4b",
+  "accuracy": 0.72,
+  "n": 500,
+  "latency_ms_single": 153
+}

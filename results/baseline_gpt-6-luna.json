@@ -1,0 +1,10 @@
+{
+  "model": "gpt-6-luna",
+  "accuracy": 0.82,
+  "n": 500,
+  "latency_ms_single": 1363,
+  "input_tokens": 436477,
+  "output_tokens": 32980,
+  "cost_usd": 0.0601,
+  "cost_usd_per_500": 0.0601
+}
